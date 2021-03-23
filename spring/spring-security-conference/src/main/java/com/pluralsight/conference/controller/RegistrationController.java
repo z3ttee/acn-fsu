@@ -14,28 +14,6 @@ import javax.validation.Valid;
 @Controller
 public class RegistrationController {
 
-    @GetMapping("registration")
-    public String getRegistration(@ModelAttribute ("registration")Registration registration) {
-        return "registration";
-    }
 
-    @PostMapping("registration")
-    @Secured("ROLE_USER")
-    public String addRegistration(@Valid @ModelAttribute ("registration")
-                                              Registration registration,
-                                  BindingResult result,
-                                  Authentication auth) {
-
-        System.out.println("Auth: " + auth.getPrincipal());
-
-        if(result.hasErrors()) {
-            System.out.println("There were errors");
-            return "registration";
-        }
-
-        System.out.println("Registration: " + registration.getName());
-
-        return "redirect:registration";
-    }
 
 }
