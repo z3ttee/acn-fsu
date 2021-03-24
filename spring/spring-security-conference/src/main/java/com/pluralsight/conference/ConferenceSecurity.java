@@ -35,6 +35,7 @@ public class ConferenceSecurity extends WebSecurityConfigurerAdapter {
                 // Every request is permitted onto this endpoint
                 .antMatchers("/login*").permitAll()
                 .antMatchers("/account*").permitAll()
+                .antMatchers("/password*").permitAll()
 
                 // Permit all assets
                 .antMatchers("/assets/css/**", "/assets/js/**", "/images/**").permitAll()
