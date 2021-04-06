@@ -1,6 +1,8 @@
 package com.pluralsight.conference.service;
 
+import com.pluralsight.conference.model.Course;
 import com.pluralsight.conference.model.Registration;
+import com.pluralsight.conference.repository.CourseRepository;
 import com.pluralsight.conference.repository.RegistrationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,12 +13,23 @@ import javax.transaction.Transactional;
 public class RegistrationServiceImpl implements RegistrationService {
 
     @Autowired
-    private RegistrationRepository repository;
+    private RegistrationRepository registrationRepository;
+
+    @Autowired
+    private CourseRepository courseRepository;
 
     @Override
     @Transactional
     public Registration addRegistration(Registration registration) {
-        return repository.save(registration);
+        registration = registrationRepository.save(registration);
+
+        Course course = new Course();
+        course.setName("Introductory Course");
+        course.setDescription("Every attendee must complete the intro.");
+        course.setRegistration(registration);
+
+        courseRepository.save(course);
+        return registration;
     }
 
 }
