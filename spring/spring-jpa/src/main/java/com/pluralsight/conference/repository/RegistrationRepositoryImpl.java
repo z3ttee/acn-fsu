@@ -28,9 +28,7 @@ public class RegistrationRepositoryImpl implements RegistrationRepository {
 
     @Override
     public List<RegistrationReport> findAllReports() {
-        String jpql = "select new com.pluralsight.conference.model.RegistrationReport(r.name, c.name, c.description) from Registration r, Course c where r.id = c.registration.id";
-        List<RegistrationReport> reports = entityManager.createQuery(jpql).getResultList();
-
+        List<RegistrationReport> reports = entityManager.createNamedQuery(Registration.REGISTRATION_REPORT).getResultList();
         return reports;
     }
 }
