@@ -12,6 +12,8 @@ export class ProductListComponent {
     showImage: boolean = false;
     products: any[] = products;
 
+    listFilter: string = "";
+
     public toggleImage(): void {
         this.showImage = !this.showImage;
     }
