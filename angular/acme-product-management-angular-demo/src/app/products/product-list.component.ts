@@ -7,5 +7,12 @@ import products from "../../api/products/products.json"
 })
 export class ProductListComponent {
     pageTitle: string = "Product List";
+    imageWidth: number = 50;
+    imageMargin: number = 2;
+    showImage: boolean = false;
     products: any[] = products;
+
+    public toggleImage(): void {
+        this.showImage = !this.showImage;
+    }
 }
