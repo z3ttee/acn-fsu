@@ -20,6 +20,7 @@ export class UserSettingsFormComponent implements OnInit {
   }
   subscriptionTypes: Observable<string[]> = of();
   singleModel = "On";
+  startDate: Date = new Date();
 
   userSettings: UserSettings = { ...this.originalUserSettings }
 

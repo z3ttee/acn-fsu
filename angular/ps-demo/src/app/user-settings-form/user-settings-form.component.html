@@ -40,6 +40,17 @@
           </div>
         </div>
 
+        <div class="form-group">
+          <label for="startDate">Start date</label>
+          <input type="text"
+           placeholder="Start Date"
+           class="form-control"
+           [(ngModel)]="startDate" name="startDate" id="startDate"
+           bsDatepicker>
+        </div>
+
+        Start date: {{ startDate }}
+
         <h5>Subsription</h5>
         <div class="form-group">
           <select class="form-control form-select" name="subscriptionType" [(ngModel)]="userSettings.subscriptionType">
