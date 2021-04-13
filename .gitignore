@@ -7,6 +7,8 @@ workspace.xml
 **/.idea/dataSources
 **/.idea/libraries
 dataSources.local.xml
+
+**/node_modules
 # Editor-based HTTP Client requests
 httpRequests/
 
