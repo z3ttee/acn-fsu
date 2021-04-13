@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angularmaterial": {
+    "angular-material": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angularmaterial",
+            "outputPath": "dist/angular-material",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -65,18 +65,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angularmaterial:build"
+            "browserTarget": "angular-material:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angularmaterial:build:production"
+              "browserTarget": "angular-material:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angularmaterial:build"
+            "browserTarget": "angular-material:build"
           }
         },
         "test": {
@@ -113,16 +113,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "angularmaterial:serve"
+            "devServerTarget": "angular-material:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "angularmaterial:serve:production"
+              "devServerTarget": "angular-material:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "angularmaterial"
+  "defaultProject": "angular-material"
 }
