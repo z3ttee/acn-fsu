@@ -1,5 +1,6 @@
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDrawer, MatSidenav } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { User } from '../../models/user';
@@ -17,6 +18,8 @@ export class SidenavComponent implements OnInit {
   public isScreenSmall: boolean;
   public users: Observable<User[]>;
 
+  @ViewChild(MatDrawer) drawer: MatDrawer;
+
   constructor(private breakpointObserver: BreakpointObserver, private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
@@ -28,9 +31,11 @@ export class SidenavComponent implements OnInit {
     this.users = this.userService.users;
     this.userService.loadAll();
 
-    this.users.subscribe(data => {
-      if(data.length > 0) this.router.navigate(["/", data[0].id])
-    })
+    this.router.events.subscribe(() => {
+      if(this.isScreenSmall) {
+        this.drawer.close();
+      }
+    });
   }
 
 }
