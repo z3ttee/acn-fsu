@@ -39,8 +39,18 @@ export class UserService {
 
   public getById(id: number): User {
     return this.dataStore.users.find(user => {
-      //console.log(user.id, user.id == id)
       if(user.id == id) return user;
+    })
+  }
+
+  public addUser(user: User): Promise<User> {
+    return new Promise((resolve) => {
+      user.id = this.dataStore.users.length + 1;
+      this.dataStore.users.push(user)
+
+      // Let datalistener know, that data is available
+      this._users.next(Object.assign({}, this.dataStore).users);
+      resolve(user);
     })
   }
 }

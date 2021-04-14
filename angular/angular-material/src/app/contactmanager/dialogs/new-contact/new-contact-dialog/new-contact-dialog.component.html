@@ -26,7 +26,7 @@
     <textarea matInput [(ngModel)]="user.bio"></textarea>
   </mat-form-field>
 
-  <mat-form-field appearance="fill">
+  <mat-form-field appearance="outline">
     <mat-label>Birthday</mat-label>
     <input matInput [matDatepicker]="picker" [(ngModel)]="user.birthDate">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
