@@ -13,6 +13,8 @@ import { NewContactDialogComponent } from '../../dialogs/new-contact/new-contact
 export class ToolbarComponent implements OnInit {
 
   @Output() toggleSidenav = new EventEmitter<void>();
+  @Output() toggleTheme = new EventEmitter<void>();
+
   constructor(
     private dialog: MatDialog,
     private snackbar: MatSnackBar,
@@ -43,5 +45,7 @@ export class ToolbarComponent implements OnInit {
       }
     })
   }
+
+
 
 }

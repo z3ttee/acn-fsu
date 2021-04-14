@@ -17,12 +17,14 @@ export class SidenavComponent implements OnInit {
 
   public isScreenSmall: boolean;
   public users: Observable<User[]>;
+  public isDarkTheme: boolean = false;
 
   @ViewChild(MatDrawer) drawer: MatDrawer;
 
   constructor(private breakpointObserver: BreakpointObserver, private userService: UserService, private router: Router) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
+
     //this.breakpointObserver.observe([ Breakpoints.XSmall ])
     this.breakpointObserver.observe([ `(max-width: ${CUSTOM_SMALL_WIDTH_BREAKPOINT}px)` ]).subscribe((state: BreakpointState) => {
       this.isScreenSmall = state.matches;
@@ -36,6 +38,10 @@ export class SidenavComponent implements OnInit {
         this.drawer.close();
       }
     });
+  }
+
+  public toggleTheme(): void {
+    this.isDarkTheme = !this.isDarkTheme;
   }
 
 }
