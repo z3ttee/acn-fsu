@@ -7,6 +7,14 @@ import { EventThumbnailComponent } from './events/thumbnail/event-thumbnail.comp
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { EventService } from './events/shared/event.service';
 import { ToastrService } from './common/toastr.service';
+import { RouterModule, Routes } from '@angular/router';
+import { EventDetailsComponent } from './events/event-details/event-details.component';
+
+const ROUTES: Routes = [
+  { path: "", component: EventListComponent },
+  { path: "event/:id", component: EventDetailsComponent },
+  { path: "**", redirectTo: "/" }
+]
 
 @NgModule({
   declarations: [
@@ -16,7 +24,8 @@ import { ToastrService } from './common/toastr.service';
     NavigationComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(ROUTES)
   ],
   providers: [
     EventService,
@@ -25,3 +34,6 @@ import { ToastrService } from './common/toastr.service';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
+
