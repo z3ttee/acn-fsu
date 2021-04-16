@@ -19,7 +19,6 @@ const ROUTES: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    EventListComponent,
     EventThumbnailComponent,
     NavigationComponent
   ],
