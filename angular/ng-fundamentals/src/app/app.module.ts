@@ -11,11 +11,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { EventDetailsComponent } from './events/event-details/event-details.component';
 import { CreateEventComponent } from './events/create-event/create-event.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Error404Component } from './errors/404.component';
 
 const ROUTES: Routes = [
   { path: "", component: EventListComponent },
   { path: "event/new", component: CreateEventComponent },   // ORDER IS IMPORTANT, FIRST DECLARED GET FIRST PROCESSED
   { path: "event/:id", component: EventDetailsComponent },
+
+  { path: "404", component: Error404Component },
 
   { path: "**", redirectTo: "/" }
 ]
@@ -27,7 +30,8 @@ const ROUTES: Routes = [
     NavigationComponent,
     EventDetailsComponent,
     EventListComponent,
-    CreateEventComponent
+    CreateEventComponent,
+    Error404Component
   ],
   imports: [
     BrowserModule,
