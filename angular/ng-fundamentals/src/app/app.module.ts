@@ -20,7 +20,9 @@ const ROUTES: Routes = [
   declarations: [
     AppComponent,
     EventThumbnailComponent,
-    NavigationComponent
+    NavigationComponent,
+    EventDetailsComponent,
+    EventListComponent
   ],
   imports: [
     BrowserModule,
