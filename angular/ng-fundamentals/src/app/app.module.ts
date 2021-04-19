@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Error404Component } from './errors/404.component';
 import { EventRouteActivatorGuard } from './events/event-route-activator.guard';
 import { EventListResolver } from './events/events-list-resolver.service';
+import { UserModule } from './user/user.module';
 
 const ROUTES: Routes = [
 
@@ -27,6 +28,11 @@ const ROUTES: Routes = [
   { path: "event/new", component: CreateEventComponent, canDeactivate: ['canDeactiveCreateEvent'] },   // ORDER IS IMPORTANT, FIRST DECLARED GET FIRST PROCESSED
   { path: "event/:id", component: EventDetailsComponent, canActivate: [EventRouteActivatorGuard] },
   { path: "404", component: Error404Component },
+
+  // Child routes for this route will be declared in the defined
+  // module class at RouterModule.forChild
+  { path: "user", loadChildren: () => UserModule },
+
   { path: "**", redirectTo: "/" }
 ]
 
