@@ -13,14 +13,20 @@ import { CreateEventComponent } from './events/create-event/create-event.compone
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Error404Component } from './errors/404.component';
 import { EventRouteActivatorGuard } from './events/event-route-activator.guard';
+import { EventListResolver } from './events/events-list-resolver.service';
 
 const ROUTES: Routes = [
-  { path: "", component: EventListComponent },
+
+  // Using a resolver, when routing to that component, the resolver is called
+  // and fetches the data. This data is then added as "events" property to the
+  // routes "data" object.
+  { path: "", component: EventListComponent, resolve: {
+    events: EventListResolver
+  }},
+  
   { path: "event/new", component: CreateEventComponent, canDeactivate: ['canDeactiveCreateEvent'] },   // ORDER IS IMPORTANT, FIRST DECLARED GET FIRST PROCESSED
   { path: "event/:id", component: EventDetailsComponent, canActivate: [EventRouteActivatorGuard] },
-
   { path: "404", component: Error404Component },
-
   { path: "**", redirectTo: "/" }
 ]
 
@@ -42,6 +48,7 @@ const ROUTES: Routes = [
   providers: [
     EventService,
     ToastrService,
+    EventListResolver,
     {
       provide: "canDeactiveCreateEvent",
       useValue: checkDirtyState

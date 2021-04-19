@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { Subject } from "rxjs";
 
 // 
 // This decorator is only required, if the service itsel depends on things
@@ -12,7 +13,19 @@ import { Injectable } from "@angular/core";
 export class EventService {
 
   public getEvents() {
-    return EVENTS;
+    // Subject is type of Observable
+    let subject = new Subject();
+
+    setTimeout(() => {
+      // Adding data to Observable
+      subject.next(EVENTS);
+
+      // Notifying about data changes
+      subject.complete();
+    }, 300);
+
+    // Return "Observable"
+    return subject;
   }
 
   public getEvent(id: number): any {
