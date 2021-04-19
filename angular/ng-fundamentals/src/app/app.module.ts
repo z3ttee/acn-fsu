@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { EventListComponent } from './events/events-list.component';
 import { EventThumbnailComponent } from './events/thumbnail/event-thumbnail.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
-import { EventService } from './events/shared/event.service';
+import { EventService } from './shared/event.service';
 import { ToastrService } from './common/toastr.service';
 import { RouterModule, Routes } from '@angular/router';
 import { EventDetailsComponent } from './events/event-details/event-details.component';

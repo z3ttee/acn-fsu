@@ -11,11 +11,11 @@
 
     <div>Price: ${{ event?.price }}</div>
     <div *ngIf="event?.location">
-        <span>Location: {{ event.location.address }}</span>
+        <span>Location: {{ event?.location?.address }}</span>
         <span>&nbsp;</span>
-        <span>{{ event.location.city }}, {{ event.location.country }}</span>
+        <span>{{ event?.location?.city }}, {{ event?.location?.country }}</span>
     </div>
     <div *ngIf="event?.onlineUrl">
-        <span>Online: {{ event.onlineUrl }}</span>
+        <span>Online: {{ event?.onlineUrl }}</span>
     </div>
 </div>
