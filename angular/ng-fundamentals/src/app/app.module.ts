@@ -15,6 +15,7 @@ import { Error404Component } from './errors/404.component';
 import { EventRouteActivatorGuard } from './events/event-route-activator.guard';
 import { EventListResolver } from './events/events-list-resolver.service';
 import { UserModule } from './user/user.module';
+import { AuthService } from './user/auth.service';
 
 const ROUTES: Routes = [
 
@@ -55,6 +56,7 @@ const ROUTES: Routes = [
     EventService,
     ToastrService,
     EventListResolver,
+    AuthService,
     {
       provide: "canDeactiveCreateEvent",
       useValue: checkDirtyState
