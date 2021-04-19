@@ -16,7 +16,7 @@ import { EventRouteActivatorGuard } from './events/event-route-activator.guard';
 
 const ROUTES: Routes = [
   { path: "", component: EventListComponent },
-  { path: "event/new", component: CreateEventComponent },   // ORDER IS IMPORTANT, FIRST DECLARED GET FIRST PROCESSED
+  { path: "event/new", component: CreateEventComponent, canDeactivate: ['canDeactiveCreateEvent'] },   // ORDER IS IMPORTANT, FIRST DECLARED GET FIRST PROCESSED
   { path: "event/:id", component: EventDetailsComponent, canActivate: [EventRouteActivatorGuard] },
 
   { path: "404", component: Error404Component },
@@ -41,11 +41,22 @@ const ROUTES: Routes = [
   ],
   providers: [
     EventService,
-    ToastrService
+    ToastrService,
+    {
+      provide: "canDeactiveCreateEvent",
+      useValue: checkDirtyState
+    }
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
 
+// The first parameter that gets passed is always the component, which gets deactivated on routing
+export function checkDirtyState(component: CreateEventComponent) {
+  if(component.isDirty) {
+    return window.confirm("You have made unsaved changes. Are you sure you want to cancel?");
+  }
 
+  return true;
+}
 
