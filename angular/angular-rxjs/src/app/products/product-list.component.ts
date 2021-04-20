@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 import { EMPTY, Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -8,7 +8,11 @@ import { ProductService } from './product.service';
 
 @Component({
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css']
+  styleUrls: ['./product-list.component.css'],
+
+  // This won't notice changes that were made by referencing a property e.g.: this.errorMessage = "Error" will not cause any changes
+  // The ui will only update if the observable pushes new data
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductListComponent implements OnInit {
   pageTitle = 'Product List';
