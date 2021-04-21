@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { combineLatest, EMPTY, Subject } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { BehaviorSubject, combineLatest, EMPTY, Subject } from 'rxjs';
+import { catchError, map, startWith, tap } from 'rxjs/operators';
 import { ProductCategoryService } from '../product-categories/product-category.service';
 
 import { ProductService } from './product.service';
@@ -18,12 +18,14 @@ export class ProductListComponent {
   public pageTitle = 'Product List';
   public errorMessage = '';
 
-  private categorySelectedSubject = new Subject<number>();
+  // Previously was Subject.
+  // BehaviourSubject lets us define initial values.
+  private categorySelectedSubject = new BehaviorSubject<number>(0);
   categorySelectedAction$ = this.categorySelectedSubject.asObservable();
 
   products$ = combineLatest([
     this.productService.productsWithCategories$,
-    this.categorySelectedAction$
+    this.categorySelectedAction$ // for initial values a pipe can be used: e.g: .pipe(startWith(0))
   ]).pipe(
     // Every time the user selects a category, the items get filtered and pushed into the stream
     map(([products, selectedCategoryId]) => products.filter(product => selectedCategoryId ? product.categoryId === selectedCategoryId : true)),
