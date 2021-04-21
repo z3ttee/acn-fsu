@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { throwError, Observable } from 'rxjs';
+import { catchError, shareReplay } from 'rxjs/operators';
 
 import { ProductCategory } from './product-category';
 
@@ -13,7 +14,12 @@ export class ProductCategoryService {
 
   constructor(private http: HttpClient) { }
 
-  productCategories$ = this.http.get<ProductCategory[]>(this.productCategoriesUrl)
+  productCategories$ = this.http.get<ProductCategory[]>(this.productCategoriesUrl).pipe(
+    // Cache and replay a single item
+    // In this case caching a single item is enough, because an array is received
+    shareReplay(1),
+    catchError(this.handleError)
+  )
 
   private handleError(err: any): Observable<never> {
     // in a real world app, we may send the server to some remote logging infrastructure
