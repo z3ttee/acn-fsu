@@ -31,7 +31,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       { path: "welcome", component: WelcomeComponent },
       { path: "", redirectTo: "welcome", pathMatch: "full" },
       { path: "**", component: PageNotFoundComponent }
-    ])
+    ], {
+      // Logs events to console
+      enableTracing: true
+    })
   ],
   declarations: [
     AppComponent,
