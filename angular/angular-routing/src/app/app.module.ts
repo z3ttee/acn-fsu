@@ -16,6 +16,8 @@ import { UserModule } from './user/user.module';
 import { MessageModule } from './messages/message.module';
 import { RouterModule } from '@angular/router';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -24,6 +26,7 @@ import { RouterModule } from '@angular/router';
     ProductModule,
     UserModule,
     MessageModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot([
       { path: "welcome", component: WelcomeComponent },
       { path: "", redirectTo: "welcome", pathMatch: "full" },
