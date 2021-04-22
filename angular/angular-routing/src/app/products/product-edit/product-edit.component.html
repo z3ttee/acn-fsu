@@ -16,7 +16,7 @@
       <div class="col-md-6">
         <button class="btn btn-primary mr-2" style="width:80px" type="button"
           title="Save your entered data"
-          (click)="saveProduct()">
+          (click)="saveProduct()" [disabled]="!isValid()">
           Save
         </button>
         <button class="btn btn-outline-secondary mr-2" style="width:80px" type="button" title="Cancel your edits"
